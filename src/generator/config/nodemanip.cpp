@@ -469,6 +469,9 @@ void preprocessNodes(std::vector<Proxy> &nodes, extra_settings &ext)
 {
     std::for_each(nodes.begin(), nodes.end(), [&ext](Proxy &x)
     {
+        if(ext.removeWebSocketHost)
+            x.Host.clear();
+
         if(ext.remove_emoji)
             x.Remark = trim(removeEmoji(x.Remark));
 

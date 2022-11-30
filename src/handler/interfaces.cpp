@@ -347,7 +347,12 @@ std::string subconverter(RESPONSE_CALLBACK_ARGS)
 
     /// switches with default value
     tribool argUpload = getUrlArg(argument, "upload"), argEmoji = getUrlArg(argument, "emoji"), argAddEmoji = getUrlArg(argument, "add_emoji"), argRemoveEmoji = getUrlArg(argument, "remove_emoji");
-    tribool argAppendType = getUrlArg(argument, "append_type"), argTFO = getUrlArg(argument, "tfo"), argUDP = getUrlArg(argument, "udp"), argGenNodeList = getUrlArg(argument, "list");
+    tribool argAppendType = 
+        getUrlArg(argument, "append_type"), 
+        argTFO = getUrlArg(argument, "tfo"), 
+        argRemoveWebSocketHost = getUrlArg(argument, "remove_web_socket_host"), 
+        argUDP = getUrlArg(argument, "udp"), 
+        argGenNodeList = getUrlArg(argument, "list");
     tribool argSort = getUrlArg(argument, "sort"), argUseSortScript = getUrlArg(argument, "sort_script");
     tribool argGenClashScript = getUrlArg(argument, "script"), argEnableInsert = getUrlArg(argument, "insert");
     tribool argSkipCertVerify = getUrlArg(argument, "scv"), argFilterDeprecated = getUrlArg(argument, "fdn"), argExpandRulesets = getUrlArg(argument, "expand"), argAppendUserinfo = getUrlArg(argument, "append_info");
@@ -416,6 +421,7 @@ std::string subconverter(RESPONSE_CALLBACK_ARGS)
 
     /// read preference from argument, assign global var if not in argument
     ext.tfo.define(argTFO).define(global.TFOFlag);
+    ext.removeWebSocketHost = argRemoveWebSocketHost.get(global.removeWebSocketHost);
     ext.udp.define(argUDP).define(global.UDPFlag);
     ext.skip_cert_verify.define(argSkipCertVerify).define(global.skipCertVerify);
     ext.tls13.define(argTLS13).define(global.TLS13Flag);
@@ -1048,6 +1054,7 @@ std::string surgeConfToClash(RESPONSE_CALLBACK_ARGS)
     ext.sort_flag = global.enableSort;
     ext.filter_deprecated = global.filterDeprecated;
     ext.clash_new_field_name = global.clashUseNewField;
+    ext.removeWebSocketHost = global.removeWebSocketHost;
     ext.udp = global.UDPFlag;
     ext.tfo = global.TFOFlag;
     ext.skip_cert_verify = global.skipCertVerify;

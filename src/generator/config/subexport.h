@@ -32,6 +32,7 @@ struct extra_settings
     std::string surge_ssr_path;
     std::string managed_config_prefix;
     std::string quanx_dev_id;
+    bool removeWebSocketHost = false;
     tribool udp = tribool();
     tribool tfo = tribool();
     tribool skip_cert_verify = tribool();

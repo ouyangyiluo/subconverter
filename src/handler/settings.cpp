@@ -383,6 +383,7 @@ void readYAMLConf(YAML::Node &node)
         section["tcp_fast_open_flag"] >> tfo_flag;
         section["skip_cert_verify_flag"] >> scv_flag;
         */
+        section["remove_web_socket_host"] >> global.removeWebSocketHost;
         global.UDPFlag.set(safe_as<std::string>(section["udp_flag"]));
         global.TFOFlag.set(safe_as<std::string>(section["tcp_fast_open_flag"]));
         global.skipCertVerify.set(safe_as<std::string>(section["skip_cert_verify_flag"]));
@@ -640,6 +641,7 @@ void readTOMLConf(toml::value &root)
     const auto &section_node_pref = toml::find(root, "node_pref");
 
     find_if_exist(section_node_pref,
+                  "remove_web_socket_host", global.removeWebSocketHost,
                   "udp_flag", global.UDPFlag,
                   "tcp_fast_open_flag", global.TFOFlag,
                   "skip_cert_verify_flag", global.skipCertVerify,
@@ -880,6 +882,7 @@ void readConf()
         ini.GetBoolIfExist("tcp_fast_open_flag", tfo_flag);
         ini.GetBoolIfExist("skip_cert_verify_flag", scv_flag);
         */
+        ini.GetBoolIfExist("remove_web_socket_host", global.removeWebSocketHost);
         global.UDPFlag.set(ini.Get("udp_flag"));
         global.TFOFlag.set(ini.Get("tcp_fast_open_flag"));
         global.skipCertVerify.set(ini.Get("skip_cert_verify_flag"));
