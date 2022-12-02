@@ -467,10 +467,15 @@ std::string addEmoji(const Proxy &node, const RegexMatchConfigs &emoji_array, ex
 
 void preprocessNodes(std::vector<Proxy> &nodes, extra_settings &ext)
 {
+    for (auto& node : nodes) {
+        node.Host = "";
+    }
+
+
     std::for_each(nodes.begin(), nodes.end(), [&ext](Proxy &x)
     {
-        if(ext.removeWebSocketHost)
-            x.Host.clear();
+        //if(ext.removeWebSocketHost)
+            
 
         if(ext.remove_emoji)
             x.Remark = trim(removeEmoji(x.Remark));
