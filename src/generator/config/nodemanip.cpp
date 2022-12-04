@@ -470,7 +470,7 @@ void preprocessNodes(std::vector<Proxy> &nodes, extra_settings &ext)
     std::vector<Proxy> nodes_append;
     for (auto& node : nodes) {
         //node.Host = "";
-        if (!node.Host.empty) {
+        if (!node.Host.empty()) {
             Proxy copy_node = Proxy(node);
             copy_node.Remark += "-NoneHost";
             copy_node.Host.clear();
